@@ -116,7 +116,7 @@ func renderStory(rank, jp) {
     let comments = "https://news.ycombinator.com/item?id=" + id
 
     // Row 1: rank + score + title.
-    kp(ansiDim("#" + padL("" + rank, 3)) + " " +
+    print(ansiDim("#" + padL("" + rank, 3)) + " " +
        ansiYellow(padL("" + score, 4)) + "  " +
        ansiBold(title))
 
@@ -128,9 +128,9 @@ func renderStory(rank, jp) {
     meta = meta + ansiGreen(by) + ansiDim(" · ") +
                   ansiPurple(when) + ansiDim(" · ") +
                   ansiBlue(kids + " comments")
-    kp("       " + meta)
-    kp("       " + ansiDim(comments))
-    kp("")
+    print("       " + meta)
+    print("       " + ansiDim(comments))
+    print("")
 }
 
 // ── Main ─────────────────────────────────────────────────────────────
@@ -158,12 +158,12 @@ just run {
     }
 
     let endpoint = hnEndpoint(kind)
-    kp("khn — " + ansiPurple("HN /" + kind) + " " + ansiDim("(top " + limit + ")"))
-    kp("")
+    print("khn — " + ansiPurple("HN /" + kind) + " " + ansiDim("(top " + limit + ")"))
+    print("")
 
     let raw = hnFetch(endpoint)
     if len(raw) == 0 {
-        kp(ansiRed("khn: no response from " + endpoint))
+        print(ansiRed("khn: no response from " + endpoint))
         emit 1
     }
 
@@ -190,5 +190,5 @@ just run {
         i += 1
     }
 
-    kp(ansiDim("— " + shown + " stories. Open the comments URL in a browser to discuss."))
+    print(ansiDim("— " + shown + " stories. Open the comments URL in a browser to discuss."))
 }
